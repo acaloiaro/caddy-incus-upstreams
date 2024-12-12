@@ -8,7 +8,7 @@ Incus dynamic upstreams for Caddy v2+ 🧨
 
 Set the following config on your Incus instance.
 
-```
+```bash
 incus config set <instance-name> user.caddyserver.http.enable=true
 incus config set <instance-name> user.caddyserver.http.matchers.host=<domain>
 incus config set <instance-name> user.caddyserver.http.upstream.port=<port>
@@ -16,14 +16,14 @@ incus config set <instance-name> user.caddyserver.http.upstream.port=<port>
 
 Build a fresh caddy with this plugin.
 
-```
+```bash
 xcaddy build \
   --with git.coopcloud.tech/decentral1se/caddy-incus-upstreams
 ```
 
 Wire up a Caddyfile based on this example.
 
-```
+```Caddyfile
 example.com {
   reverse_proxy {
     dynamic incus
@@ -62,7 +62,7 @@ http://bar.localhost {
 
 Then run commands based on this example.
 
-```
+```bash
 incus launch images:alpine/3.20 foo
 incus config set foo user.caddyserver.http.enable=true
 incus config set foo user.caddyserver.http.matchers.host=foo.localhost
