@@ -52,37 +52,40 @@ Create this Caddyfile in the root of the project repository.
   http_port 6565
 }
 
-http://foo.localhost,
-http://bar.localhost {
+http://foo.localhost {
   reverse_proxy {
     dynamic incus
   }
 }
 ```
 
-Then run commands based on this example.
+Then create a new instance and assign the relevant config.
 
 ```bash
 incus launch images:alpine/3.20 foo
 incus config set foo user.caddyserver.http.enable=true
 incus config set foo user.caddyserver.http.matchers.host=foo.localhost
 incus config set foo user.caddyserver.http.upstream.port=80
+```
 
-incus launch images:alpine/3.20 bar
-incus config set bar user.caddyserver.http.enable=true
-incus config set bar user.caddyserver.http.matchers.host=bar.localhost
-incus config set bar user.caddyserver.http.upstream.port=80
+Serve something from your instance.
 
-# wire up a simple web server on your 2 instances
-# $ incus shell foo / bar
-# $ apk add python3
-# $ python3 -m http.server 80
+```
+incus shell foo
+apk add python3
+python3 -m http.server 80
+```
 
+Run Caddy with the plugin baked in.
+
+```
 xcaddy run
+```
 
-# fire a request via caddy to your instances
-# curl -X GET http://foo.localhost:6565
-# curl -X GET http://bar.localhost:6565
+And finally, route a request to the instance via Caddy.
+
+```
+curl -X GET http://foo.localhost:6565
 ```
 
 🧨
