@@ -18,7 +18,7 @@ Build a fresh caddy with this plugin.
 
 ```
 xcaddy build \
-  --with https://git.coopcloud.tech/decentral1se/caddy-incus-upstreams
+  --with git.coopcloud.tech/decentral1se/caddy-incus-upstreams
 ```
 
 Wire up a Caddyfile based on this example.
