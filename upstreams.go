@@ -187,6 +187,13 @@ func (u *Upstreams) provisionCandidates(ctx caddy.Context, conn incus.InstanceSe
 		)
 
 		address := net.JoinHostPort(addr, port)
+
+		ctx.Logger().Info("new candidate provisioned",
+			zap.String("instance_name", i.Name),
+			zap.String("address", address),
+			zap.Any("matchers", matchers),
+		)
+
 		updated = append(updated, candidate{
 			matchers: matchers,
 			upstream: &reverseproxy.Upstream{Dial: address},
@@ -213,8 +220,11 @@ func (u *Upstreams) keepUpdated(ctx caddy.Context, conn incus.InstanceServer) {
 	ctx.Logger().Debug("initialised event listener")
 
 	events := []string{
-		api.EventLifecycleInstanceStarted,
+		api.EventLifecycleInstanceCreated,
+		api.EventLifecycleInstanceReady,
 		api.EventLifecycleInstanceRestarted,
+		api.EventLifecycleInstanceResumed,
+		api.EventLifecycleInstanceStarted,
 	}
 
 	if _, err := listener.AddHandler([]string{"lifecycle"}, func(event api.Event) {
@@ -227,6 +237,9 @@ func (u *Upstreams) keepUpdated(ctx caddy.Context, conn incus.InstanceServer) {
 		if !slices.Contains(events, metadata.Action) {
 			return
 		}
+
+		// NOTE(d1): ensure network comes up
+		time.Sleep(3 * time.Second)
 
 		ctx.Logger().Debug("handling event",
 			zap.String("instance_name", metadata.Name),

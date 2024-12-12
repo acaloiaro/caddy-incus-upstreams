@@ -35,10 +35,12 @@ example.com {
 
 The plugin responds to the following Incus events:
 
-* `api.EventLifecycleInstanceStarted`
+* `api.EventLifecycleInstanceCreated`
 * `api.EventLifecycleInstanceRestarted`
+* `api.EventLifecycleInstanceResumed`
+* `api.EventLifecycleInstanceStarted`
 
-It currently *only* retrieves the ipv4 addresses of the instances.
+It currently *only* matches against the upstream ipv4 addresses of instances.
 
 ## Hackin'
 
