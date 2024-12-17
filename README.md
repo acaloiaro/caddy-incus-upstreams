@@ -42,6 +42,24 @@ The plugin responds to the following Incus events:
 
 It currently *only* matches against the upstream ipv4 addresses of instances.
 
+## FAQ
+
+### Does this support wildcard certificates?
+
+Yes! You'll need to enable a [DNS plugin](https://caddy.community/t/how-to-use-dns-provider-modules-in-caddy-2/8148j) and wire up something like this in a Caddyfile.
+
+```Caddyfile
+{
+  acme_dns <your-provider-here> <your-token-here>
+}
+
+*.example.org {
+  reverse_proxy {
+    dynamic incus
+  }
+}
+```
+
 ## Hackin'
 
 Install [`xcaddy`](https://github.com/caddyserver/xcaddy) and [Incus](https://linuxcontainers.org/incus/).
