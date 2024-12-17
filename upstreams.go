@@ -148,6 +148,7 @@ func (u *Upstreams) provisionCandidates(ctx caddy.Context, conn incus.InstanceSe
 		if err != nil {
 			ctx.Logger().Error("unable to get full instance info",
 				zap.String("instance_name", i.Name),
+				zap.Error(err),
 			)
 			continue
 		}
@@ -230,7 +231,10 @@ func (u *Upstreams) keepUpdated(ctx caddy.Context, conn incus.InstanceServer) {
 	if _, err := listener.AddHandler([]string{"lifecycle"}, func(event api.Event) {
 		metadata := &api.EventLifecycle{}
 		if err := json.Unmarshal(event.Metadata, &metadata); err != nil {
-			ctx.Logger().Debug("unable to marshal event metadata", zap.Any("event", event))
+			ctx.Logger().Debug("unable to marshal event metadata",
+				zap.Any("event", event),
+				zap.Error(err),
+			)
 			return
 		}
 
