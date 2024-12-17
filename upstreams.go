@@ -144,7 +144,8 @@ func (u *Upstreams) provisionCandidates(ctx caddy.Context, conn incus.InstanceSe
 			zap.String("port", port),
 		)
 
-		instanceFull, _, err := conn.GetInstanceFull(i.Name)
+		pConn := conn.UseProject(i.Project)
+		instanceFull, _, err := pConn.GetInstanceFull(i.Name)
 		if err != nil {
 			ctx.Logger().Error("unable to get full instance info",
 				zap.String("instance_name", i.Name),
