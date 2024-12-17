@@ -258,9 +258,7 @@ func (u *Upstreams) keepUpdated(ctx caddy.Context, conn incus.InstanceServer) {
 		ctx.Logger().Error("event listener handler setup error", zap.Error(err))
 	}
 
-	chError := make(chan error, 1)
-	chError <- listener.Wait()
-	if chError != nil {
+	if err := listener.Wait(); err != nil {
 		ctx.Logger().Error("event listener wait error", zap.Error(err))
 	}
 
