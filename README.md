@@ -2,11 +2,11 @@
 
 > Status: **HIGHLY experimental**, patches welcome 🚩
 
-Incus dynamic upstreams for Caddy v2+ 🧨
+`Incus` dynamic upstreams for `Caddy` v2+ 🧨
 
 ## Usage
 
-Set the following config on your Incus instance.
+Set the following config on your `Incus` instance.
 
 ```bash
 incus launch images:alpine/3.20 <instance-name>
@@ -15,7 +15,7 @@ incus config set <instance-name> user.caddyserver.http.matchers.host=<domain>
 incus config set <instance-name> user.caddyserver.http.upstream.port=<port>
 ```
 
-Build a fresh caddy with this plugin.
+Build a fresh `Caddy` with this plugin.
 
 ```bash
 xcaddy build \
@@ -23,7 +23,7 @@ xcaddy build \
   --replace=go.opentelemetry.io/otel/sdk=go.opentelemetry.io/otel/sdk@v1.25.0
 ```
 
-Wire up a Caddyfile based on this example.
+Wire up a `Caddyfile` based on this example.
 
 ```Caddyfile
 example.com {
@@ -42,7 +42,7 @@ incus restart <instance-name>
 
 ## Notes
 
-The plugin responds to the following Incus events:
+The plugin responds to the following `Incus` events:
 
 * `api.EventLifecycleInstanceCreated`
 * `api.EventLifecycleInstanceRestarted`
@@ -51,7 +51,7 @@ The plugin responds to the following Incus events:
 
 There is a rather crude implementation for handling these events. We simply
 wire up a few seconds of sleep to allow for the network part of the instance to
-come up. Otherwise, there is not network address to retrieve.
+come up. Otherwise, there is no network address to retrieve.
 
 We currently *only* match against the upstream ipv4 addresses of instances.
 
@@ -62,7 +62,9 @@ group so that it can make queries across projects for different instances.
 
 ### Does this support wildcard certificates?
 
-Yes! You'll need to enable a [DNS plugin](https://caddy.community/t/how-to-use-dns-provider-modules-in-caddy-2/8148j) and wire up something like this in a Caddyfile.
+Yes! You'll need to enable a [DNS
+plugin](https://caddy.community/t/how-to-use-dns-provider-modules-in-caddy-2/8148j)
+and wire up something like this in your `Caddyfile`.
 
 ```Caddyfile
 {
@@ -78,9 +80,9 @@ Yes! You'll need to enable a [DNS plugin](https://caddy.community/t/how-to-use-d
 
 ## Hackin'
 
-Install [`xcaddy`](https://github.com/caddyserver/xcaddy) and [Incus](https://linuxcontainers.org/incus/).
+Install [`xcaddy`](https://github.com/caddyserver/xcaddy) and [`Incus`](https://linuxcontainers.org/incus/).
 
-Create this Caddyfile in the root of the project repository.
+Create this `Caddyfile` in the root of the project repository.
 
 ```Caddyfile
 {
@@ -112,13 +114,13 @@ apk add python3
 python3 -m http.server 80
 ```
 
-Run Caddy with the plugin baked in.
+Run `Caddy` with the plugin baked in.
 
 ```
 xcaddy run
 ```
 
-And finally, route a request to the instance via Caddy.
+And finally, route a request to the instance via `Caddy`.
 
 ```
 curl -X GET http://foo.localhost:6565
