@@ -4,6 +4,13 @@
 
 `Incus` dynamic upstreams for `Caddy` v2+ 🧨
 
+In other words, `Caddy` can automatically pick up your `Incus` instances when
+they have 3 config keys attached to them which specify 1. that they want to be
+routed 2. which domain should be routed to them 3. which port they'll answer
+on. Combined with the lightweight configuration and the Auto-TLS (magic) powers
+of Caddy, provisioning `Incus` instances to serve on the web is much more
+convenient.
+
 ## Usage
 
 Set the following config on your `Incus` instance.
