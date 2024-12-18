@@ -46,6 +46,9 @@ come up. Otherwise, there is not network address to retrieve.
 
 We currently *only* match against the upstream ipv4 addresses of instances.
 
+The system user that runs `Caddy` must be `root` or be in the `incus-admin`
+group so that it can make queries across projects for different instances.
+
 ## FAQ
 
 ### Does this support wildcard certificates?
