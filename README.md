@@ -2,7 +2,8 @@
 
 > Status: **HIGHLY experimental**, patches welcome 🚩
 
-`Incus` dynamic upstreams for `Caddy` v2+ 🧨
+[`Incus`](https://linuxcontainers.org/incus/) dynamic upstreams for
+[`Caddy`](https://caddyserver.com/docs/) v2+ 🧨
 
 In other words, `Caddy` can automatically pick up your `Incus` instances when
 they have 3 config keys attached to them which specify 1. that they want to be
@@ -87,7 +88,8 @@ and wire up something like this in your `Caddyfile`.
 
 ## Hackin'
 
-Install [`xcaddy`](https://github.com/caddyserver/xcaddy) and [`Incus`](https://linuxcontainers.org/incus/).
+Install [`xcaddy`](https://github.com/caddyserver/xcaddy) and
+[`Incus`](https://linuxcontainers.org/incus/).
 
 Create this `Caddyfile` in the root of the project repository.
 
