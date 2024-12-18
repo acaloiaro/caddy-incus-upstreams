@@ -40,7 +40,11 @@ The plugin responds to the following Incus events:
 * `api.EventLifecycleInstanceResumed`
 * `api.EventLifecycleInstanceStarted`
 
-It currently *only* matches against the upstream ipv4 addresses of instances.
+There is a rather crude implementation for handling these events. We simply
+wire up a few seconds of sleep to allow for the network part of the instance to
+come up. Otherwise, there is not network address to retrieve.
+
+We currently *only* match against the upstream ipv4 addresses of instances.
 
 ## FAQ
 
