@@ -9,6 +9,7 @@ Incus dynamic upstreams for Caddy v2+ 🧨
 Set the following config on your Incus instance.
 
 ```bash
+incus launch images:alpine/3.20 <instance-name>
 incus config set <instance-name> user.caddyserver.http.enable=true
 incus config set <instance-name> user.caddyserver.http.matchers.host=<domain>
 incus config set <instance-name> user.caddyserver.http.upstream.port=<port>
@@ -30,6 +31,13 @@ example.com {
     dynamic incus
   }
 }
+```
+
+And then make sure everything gets picked up with a `reload`/`restart`.
+
+```
+caddy reload
+incus restart <instance-name>
 ```
 
 ## Notes
