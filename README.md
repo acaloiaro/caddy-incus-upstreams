@@ -18,7 +18,8 @@ Build a fresh caddy with this plugin.
 
 ```bash
 xcaddy build \
-  --with git.coopcloud.tech/decentral1se/caddy-incus-upstreams
+  --with=git.coopcloud.tech/decentral1se/caddy-incus-upstreams \
+  --replace=go.opentelemetry.io/otel/sdk=go.opentelemetry.io/otel/sdk@v1.25.0
 ```
 
 Wire up a Caddyfile based on this example.
