@@ -117,14 +117,14 @@ func (u *Upstreams) provisionCandidates(ctx caddy.Context, conn incus.InstanceSe
 
 		enabled, ok := i.Config[UserConfigEnable]
 		if !ok {
-			ctx.Logger().Error("dynamic incus upstream not enabled",
+			ctx.Logger().Debug("dynamic incus upstream not enabled",
 				zap.String("instance_name", i.Name),
 			)
 			continue
 		}
 
 		if enabled != "true" {
-			ctx.Logger().Error("dynamic incus upstream disabled",
+			ctx.Logger().Debug("dynamic incus upstream disabled",
 				zap.String("instance_name", i.Name),
 				zap.String("enabled", enabled),
 			)
@@ -133,7 +133,7 @@ func (u *Upstreams) provisionCandidates(ctx caddy.Context, conn incus.InstanceSe
 
 		port, ok := i.Config[UserConfigUpstreamPort]
 		if !ok {
-			ctx.Logger().Error("unable to get port from instance config",
+			ctx.Logger().Debug("unable to get port from instance config",
 				zap.String("instance_name", i.Name),
 			)
 			continue
@@ -147,7 +147,7 @@ func (u *Upstreams) provisionCandidates(ctx caddy.Context, conn incus.InstanceSe
 		pConn := conn.UseProject(i.Project)
 		instanceFull, _, err := pConn.GetInstanceFull(i.Name)
 		if err != nil {
-			ctx.Logger().Error("unable to get full instance info",
+			ctx.Logger().Debug("unable to get full instance info",
 				zap.String("instance_name", i.Name),
 				zap.Error(err),
 			)
@@ -190,7 +190,7 @@ func (u *Upstreams) provisionCandidates(ctx caddy.Context, conn incus.InstanceSe
 
 		address := net.JoinHostPort(addr, port)
 
-		ctx.Logger().Info("new candidate provisioned",
+		ctx.Logger().Debug("candidate is provisioned",
 			zap.String("instance_name", i.Name),
 			zap.String("address", address),
 			zap.Any("matchers", matchers),
