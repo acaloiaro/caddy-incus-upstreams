@@ -34,7 +34,7 @@ xcaddy build \
 Wire up a `Caddyfile` based on this example.
 
 ```Caddyfile
-example.com {
+<domain> {
   reverse_proxy {
     dynamic incus
   }
