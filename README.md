@@ -79,7 +79,7 @@ and wire up something like this in your `Caddyfile`.
   acme_dns <your-provider-here> <your-token-here>
 }
 
-*.example.org {
+*.<domain> {
   reverse_proxy {
     dynamic incus
   }
