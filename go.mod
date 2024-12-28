@@ -1,9 +1,6 @@
-module git.coopcloud.tech/decentral1se/caddy-incus-upstreams
+module github.com/acaloiaro/caddy-incus-upstreams
 
 go 1.23.1
-
-// NOTE(d1): https://github.com/caddyserver/xcaddy/issues/219
-replace go.opentelemetry.io/otel/sdk v1.21.0 => go.opentelemetry.io/otel/sdk v1.25.0
 
 require (
 	github.com/caddyserver/caddy/v2 v2.8.4
@@ -109,6 +106,7 @@ require (
 	go.etcd.io/bbolt v1.3.9 // indirect
 	go.opentelemetry.io/otel v1.32.0 // indirect
 	go.opentelemetry.io/otel/metric v1.32.0 // indirect
+	go.opentelemetry.io/otel/sdk v1.25.0 // indirect
 	go.opentelemetry.io/otel/trace v1.32.0 // indirect
 	go.step.sm/cli-utils v0.9.0 // indirect
 	go.step.sm/crypto v0.45.0 // indirect

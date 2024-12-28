@@ -26,9 +26,7 @@ incus config set <instance-name> user.caddyserver.http.upstream.port=<port>
 Build a fresh `Caddy` with this plugin.
 
 ```bash
-xcaddy build \
-  --with=git.coopcloud.tech/decentral1se/caddy-incus-upstreams \
-  --replace=go.opentelemetry.io/otel/sdk=go.opentelemetry.io/otel/sdk@v1.25.0
+xcaddy build --with=git.coopcloud.tech/decentral1se/caddy-incus-upstreams 
 ```
 
 Wire up a `Caddyfile` based on this example.
